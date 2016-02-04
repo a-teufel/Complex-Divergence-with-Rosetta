@@ -270,30 +270,11 @@ def minimize(pose):
    # Set up MoveMap.
   mm = MoveMap()
   mm.set_bb(True)
-  #pose_move_map.set_chi(True) ## For side chain minimization
-  mm.set_bb_true_range(1,4) ## Here range means 1 to 4 or the minimzation is applied only to residues 1 and4 ??
-
   minmover = MinMover(mm, sf, 'dfpmin_armijo_nonmonotone', 10, True) ## I don't know the meaning of dfpmin,10,True. I saw it somewhere and used it
   #mm.set_chi(True)
-  
-  # Pack and minimize initial pose to remove clashes.
-  #pre_pre_packing_score = sf(pose)
-
-  #task = standard_packer_task(pose)
-  #task.restrict_to_repacking()
-  #task.or_include_current(True)
-  #pack_rotamers_mover = RotamerTrialsMover(sf, task)
-  #pack_rotamers_mover.apply(pose)
-
-  print("finished pack")
-  #min_mover = MinMover()
-  #min_mover.movemap(mm)
-  #min_mover.score_function(sf)
-  #min_mover.min_type('linmin')
   minmover.apply(pose)
- 
   print("finish moved")
-  #post_pre_packing_score = sf(pose)
+
 
   return(pose)	
 
